@@ -1,0 +1,851 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="RecyclerView," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="参考资料参考资料1；
+背景介绍RecyclerView由于它强大的灵活性，已经可以代替掉传统的ListView和GridView等列表控件了。但是也因为它的灵活性，一些东西就没有固定，需要我们自己来实现，比如RecyclerView就没有提供默认的分割线，当我们需要一条分割线时，我们需要自己通过继承RecyclerView.ItemDecoration来实现。当然，它不仅仅可以实现分割线，还能创造">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RecyclerView——用ItemDecoration装饰你的Item">
+<meta property="og:url" content="http://chenbingx.github.io/2016/08/07/RecyclerView/RecyclerView——用ItemDecoration装饰你的Item/index.html">
+<meta property="og:site_name" content="CoorChice">
+<meta property="og:description" content="参考资料参考资料1；
+背景介绍RecyclerView由于它强大的灵活性，已经可以代替掉传统的ListView和GridView等列表控件了。但是也因为它的灵活性，一些东西就没有固定，需要我们自己来实现，比如RecyclerView就没有提供默认的分割线，当我们需要一条分割线时，我们需要自己通过继承RecyclerView.ItemDecoration来实现。当然，它不仅仅可以实现分割线，还能创造">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1869462-da4ba78edaec2c94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1869462-f4738c4b750b1464.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-01-21T17:37:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RecyclerView——用ItemDecoration装饰你的Item">
+<meta name="twitter:description" content="参考资料参考资料1；
+背景介绍RecyclerView由于它强大的灵活性，已经可以代替掉传统的ListView和GridView等列表控件了。但是也因为它的灵活性，一些东西就没有固定，需要我们自己来实现，比如RecyclerView就没有提供默认的分割线，当我们需要一条分割线时，我们需要自己通过继承RecyclerView.ItemDecoration来实现。当然，它不仅仅可以实现分割线，还能创造">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1869462-da4ba78edaec2c94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chenbingx.github.io/2016/08/07/RecyclerView/RecyclerView——用ItemDecoration装饰你的Item/"/>
+
+
+
+
+
+  <title> RecyclerView——用ItemDecoration装饰你的Item | CoorChice </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CoorChice</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">欢迎探索CoorChice的博客</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/07/RecyclerView/RecyclerView——用ItemDecoration装饰你的Item/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="CoorChice">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/img/avatar.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="CoorChice">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="CoorChice" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                RecyclerView——用ItemDecoration装饰你的Item
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-07T06:00:00+08:00">
+                2016-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RecyclerView/" itemprop="url" rel="index">
+                    <span itemprop="name">RecyclerView</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://blog.piasy.com/2016/03/26/Insight-Android-RecyclerView-ItemDecoration/" target="_blank" rel="external">参考资料1</a>；</p>
+<h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p><em>RecyclerView</em>由于它强大的灵活性，已经可以代替掉传统的<em>ListView</em>和<em>GridView</em>等列表控件了。但是也因为它的灵活性，一些东西就没有固定，需要我们自己来实现，比如<em>RecyclerView</em>就没有提供默认的分割线，当我们需要一条分割线时，我们需要自己通过继承<em>RecyclerView.ItemDecoration</em>来实现。当然，它不仅仅可以实现分割线，还能创造很多不一样的效果，这取决于我们的想象力在这个限制范围内能到什么程度了。本篇我们来好好聊聊<em>ItemDecoration</em>。</p>
+<h1 id="认识ReccylerView-ItemDecoration"><a href="#认识ReccylerView-ItemDecoration" class="headerlink" title="认识ReccylerView.ItemDecoration"></a>认识ReccylerView.ItemDecoration</h1><h2 id="为RecyclverView添加ItemDecoration"><a href="#为RecyclverView添加ItemDecoration" class="headerlink" title="为RecyclverView添加ItemDecoration"></a>为RecyclverView添加ItemDecoration</h2><p>我们可以通过调用：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">mRecyclerView</span><span class="selector-class">.addItemDecoration</span>(<span class="selector-tag">mItemDecoration</span>)；</div></pre></td></tr></table></figure></p>
+<p>来为我们的<em>RecyclerView</em>添加一个自定义的<em>ItemDecoration</em>装饰它。<br>这里值得注意的是我们采用的是<strong>addXXX</strong>方法，这意味着我们可以为<em>RcyclerView</em>添加多个<em>ItemDecoration</em>。打开该方法的源码我们可以看到：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这是我们通常调用的代码</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">addItemDecoration</span><span class="params">(ItemDecoration decor)</span> </span>&#123;</div><div class="line">        <span class="comment">//这里又调用了另一个重载的方法</span></div><div class="line">        addItemDecoration(decor, <span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line"><span class="comment">/**</span></div><div class="line">     * Add an &#123;<span class="doctag">@link</span> ItemDecoration&#125; to this RecyclerView. Item decorations can</div><div class="line">     * affect both measurement and drawing of individual item views.</div><div class="line">     *</div><div class="line">     * &lt;p&gt;Item decorations are ordered. Decorations placed earlier in the list will</div><div class="line">     * be run/queried/drawn first for their effects on item views. Padding added to views</div><div class="line">     * will be nested; a padding added by an earlier decoration will mean further</div><div class="line">     * item decorations in the list will be asked to draw/pad within the previous decoration's</div><div class="line">     * given area.&lt;/p&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> decor Decoration to add</div><div class="line">     * <span class="doctag">@param</span> index Position in the decoration chain to insert this decoration at. If this value</div><div class="line">     *              is negative the decoration will be added at the end.</div><div class="line">     * 通过文档我们可以知道，index参数控制这我们add的ItemDecoration添加到mItemDecorations数组中的位置。如果小于0，我们的ItemDecoration将被添加到最后。</div><div class="line">     */</div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">addItemDecoration</span><span class="params">(ItemDecoration decor, <span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mLayout != <span class="keyword">null</span>) &#123;</div><div class="line">            mLayout.assertNotInLayoutOrScroll(<span class="string">"Cannot add item decoration during a scroll  or"</span></div><div class="line">                    + <span class="string">" layout"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (mItemDecorations.isEmpty()) &#123;</div><div class="line">            setWillNotDraw(<span class="keyword">false</span>);</div><div class="line">            <span class="comment">//注意，当我们首次添加ItemDecoration时，mItemDecorations是一个空的数组，</span></div><div class="line">           <span class="comment">//但这事我们就需要让View开启自我绘制，否则RecyclerView的onDraw()方法将有可能不被执行。</span></div><div class="line">           <span class="comment">//我们在写自定义ViewGroup时也需要注意这个问题。</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="comment">//这个逻辑保证了小于0，添加到末尾</span></div><div class="line">            mItemDecorations.add(decor);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">//添加到指定位置</span></div><div class="line">            mItemDecorations.add(index, decor);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//这个方法最终把RecyclerView的Item的LayoutParams的mInsertDirty属性设置为true，</span></div><div class="line">        <span class="comment">//这样在measure时，才能够把所有的ItemDecoration中的itemOffset添加到Item的布局参数上。</span></div><div class="line">        markItemDecorInsetsDirty();</div><div class="line">        requestLayout();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>所以，我们可以多次调用<code>addItemDecoration()</code>，并且每次添加的<em>ItemDecoration</em>的<em>itemOffset</em>都将累加到Item的布局参数上。</p>
+<h2 id="自定义ItemDecoration"><a href="#自定义ItemDecoration" class="headerlink" title="自定义ItemDecoration"></a>自定义ItemDecoration</h2><p>对于自定义<em>ItemDecoration</em>我们通常仅仅关心以下3个方法就行。</p>
+<h3 id="getItemOffsets"><a href="#getItemOffsets" class="headerlink" title="getItemOffsets()"></a>getItemOffsets()</h3><p>这个方法有2个重载方法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getItemOffsets</span><span class="params">(Rect outRect, <span class="keyword">int</span> itemPosition, RecyclerView parent)</span> </span>&#123;</div><div class="line">            outRect.<span class="built_in">set</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">            <span class="comment">//注意，重写时super要慎重使用，否则设置的Rect会被重置。</span></div><div class="line">            <span class="comment">//通过上面的讲解，我们知道，在这里设置的outRect的参数最终都会被累加到Item的布局参数上。</span></div><div class="line">            <span class="comment">//如果值设为负数，那么Item会发生重叠。</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line"><span class="comment">//这个方法主要能够方便的获取到View和当前RecyclerView的状态，</span></div><div class="line"><span class="comment">//但它最终调用的仍然是上一个方法，所以重写这个方法需要注意super，最好就不要要。</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getItemOffsets</span><span class="params">(Rect outRect, View view, RecyclerView parent, State state)</span> </span>&#123;</div><div class="line">            getItemOffsets(outRect, ((LayoutParams) view.getLayoutParams()).getViewLayoutPosition(),</div><div class="line">                    parent);</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
+<p>这里借张图，侵删！<br><img src="http://upload-images.jianshu.io/upload_images/1869462-da4ba78edaec2c94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置不同outRect参数的效果图"></p>
+<h3 id="onDraw"><a href="#onDraw" class="headerlink" title="onDraw()"></a>onDraw()</h3><p>该方法同样有两个重载方法：<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="literal">void</span> onDraw(Canvas c, RecyclerView <span class="keyword">parent</span>)&#123;</div><div class="line">    <span class="comment">//在这个方法中利用Canvas绘制点什么，</span></div><div class="line">    <span class="comment">//它最终会绘制在Item的下一层，如果它超出Item，那么超出部分将可见。</span></div><div class="line">    <span class="comment">//注意，计算Item的top时，记得加上Translation，否则不能准确计算</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//该方法最终还是调用上一个方法，所以要注意super，最好就不要。这个方法能够获取到RecyclerView状态。</span></div><div class="line"><span class="keyword">public</span> <span class="literal">void</span> onDraw(Canvas c, RecyclerView <span class="keyword">parent</span>, State state) &#123;</div><div class="line">            onDraw(c, <span class="keyword">parent</span>);</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
+<p>借张图，侵删！<br><img src="http://upload-images.jianshu.io/upload_images/1869462-f4738c4b750b1464.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果图"><br>这里有个坑，在我使用<code>mDrawable.canvas()</code>来绘制分割线的时候，由于<code>mDrawable.getIntrinscXXX()</code>获得的值为-1，所以导致了绘制效果不可见。解决办法是在计算<em>bottom</em>或<em>right</em>时，直接指定我们所希望的间距，除非我们已经设置mDrawable的尺寸。<br> <strong>还有一点需要注意：最终getItemOffset()方法中设置的偏移距离会叠加到Item的布局尺寸参数上，而分割线的绘制应该在Item底部(去尾)，或者说Item顶部(去头)，绘制区域</strong></p>
+<h3 id="onDrawOver"><a href="#onDrawOver" class="headerlink" title="onDrawOver()"></a>onDrawOver()</h3><p>与<code>onDraw()</code>方法类似，不同的是它将被覆盖在Item上面。它同样有两个重载方法:<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public void <span class="keyword">on</span>DrawOver(Canvas c, RecyclerView parent, State <span class="keyword">state</span>) &#123;</div><div class="line">            <span class="keyword">on</span>DrawOver(c, parent);</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">@Deprecated</div><div class="line">public void <span class="keyword">on</span>DrawOver(Canvas c, RecyclerView parent) &#123;</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过自定义<code>ItemDecoration</code>我们可以实现需要吊炸天的效果。先遵守规则，然后天马行空。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RecyclerView/" rel="tag"># RecyclerView</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/06/RecyclerView/RecyclerView——实现自定义LayoutManager/" rel="next" title="RecyclerView——实现自定义LayoutManager">
+                <i class="fa fa-chevron-left"></i> RecyclerView——实现自定义LayoutManager
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/08/RecyclerView/RecyclerView——使用ItemDragHelper来实现酷炫拖拽效果/" rel="prev" title="RecyclerView——使用ItemDragHelper来实现酷炫拖拽效果">
+                RecyclerView——使用ItemDragHelper来实现酷炫拖拽效果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.JPG"
+               alt="CoorChice" />
+          <p class="site-author-name" itemprop="name">CoorChice</p>
+          <p class="site-description motion-element" itemprop="description">我是CoorChice，我为自己代言。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背景介绍"><span class="nav-number">2.</span> <span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#认识ReccylerView-ItemDecoration"><span class="nav-number">3.</span> <span class="nav-text">认识ReccylerView.ItemDecoration</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为RecyclverView添加ItemDecoration"><span class="nav-number">3.1.</span> <span class="nav-text">为RecyclverView添加ItemDecoration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义ItemDecoration"><span class="nav-number">3.2.</span> <span class="nav-text">自定义ItemDecoration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getItemOffsets"><span class="nav-number">3.2.1.</span> <span class="nav-text">getItemOffsets()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onDraw"><span class="nav-number">3.2.2.</span> <span class="nav-text">onDraw()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onDrawOver"><span class="nav-number">3.2.3.</span> <span class="nav-text">onDrawOver()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoorChice</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+

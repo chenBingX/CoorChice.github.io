@@ -164,7 +164,7 @@
     </a>
   </div>
     
-      <p class="site-subtitle">欢迎来到CoorChice的博客</p>
+      <p class="site-subtitle">欢迎探索CoorChice的博客</p>
     
 </div>
 
@@ -274,7 +274,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/06/03/设计模式/设计模式——生成器模式/">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/22/Android绘图/XML中的Bitmap/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="CoorChice">
@@ -299,8 +299,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/03/设计模式/设计模式——生成器模式/" itemprop="url">
-                  设计模式——生成器模式
+                <a class="post-title-link" href="/2016/08/22/Android绘图/XML中的Bitmap/" itemprop="url">
+                  XML中的Bitmap
                 </a>
               
             
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-03T06:00:00+08:00">
-                2016-06-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-22T06:00:00+08:00">
+                2016-08-22
               </time>
             
 
@@ -339,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/Android绘图/" itemprop="url" rel="index">
+                    <span itemprop="name">Android绘图</span>
                   </a>
                 </span>
 
@@ -376,17 +376,11 @@
       
         
           
-          定义及实质
-定义将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
-
-
-实质分离整体构建算法和部件构造。  
-
-解释:打魔兽的时候，玩家就相当于Director指导者，兵营就相当于Builder生成器，而Product产品就是各种兵。玩家指导兵营生产不同的兵种，玩家可以通过自
+          在xml中的drawable/目录下可以创建Bitmap资源，这样可以将一张图片直接转换成bitmap，并给它设置一些属性，它指向一个BitmapDrawable对象。#调用方法## 在xml中：12345格式: @[package:]drawable/filename&lt;ImageView  
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/06/03/设计模式/设计模式——生成器模式/#more" rel="contents">
+            <a class="btn" href="/2016/08/22/Android绘图/XML中的Bitmap/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -427,7 +421,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/06/02/设计模式/设计模式——适配器模式/">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/21/Android实用之道/Android本地化全局对象的实践——File/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="CoorChice">
@@ -452,8 +446,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/02/设计模式/设计模式——适配器模式/" itemprop="url">
-                  设计模式——适配器模式
+                <a class="post-title-link" href="/2016/08/21/Android实用之道/Android本地化全局对象的实践——File/" itemprop="url">
+                  Android本地化全局对象的实践——File
                 </a>
               
             
@@ -469,8 +463,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-02T06:00:00+08:00">
-                2016-06-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-21T06:00:00+08:00">
+                2016-08-21
               </time>
             
 
@@ -492,8 +486,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/Android实用之道/" itemprop="url" rel="index">
+                    <span itemprop="name">Android实用之道</span>
                   </a>
                 </span>
 
@@ -529,19 +523,11 @@
       
         
           
-          定义及实质
-定义将一个类的接口转换为客户希望的另一个接口，适配器模式使原本由于接口不兼容不能一起工作的类，可以在一起工作。
-
-实质类型转换，功能复用。  
-
-
-比较抽象，往下继续看看。
-模式图解对象适配器解释：  
-现在有一个单手剑（现有接口），但英雄只能装备法杖（目标接口）。所以需要定义一个单手剑
+          本地化全局变量在开发中，我们经常遇到一些对象是需要供全局使用的，当这样的对象比较复杂时，将它本地化是非常必要的。这样不仅能够避免频繁的创建这些复杂的对象，还能保存住对象的状态。下面先是一种本地化全局对象的解决方案，主要使用File实现。注意：这个方法在进行大量复杂数据的存取过程中，可能造成ANR，因
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/06/02/设计模式/设计模式——适配器模式/#more" rel="contents">
+            <a class="btn" href="/2016/08/21/Android实用之道/Android本地化全局对象的实践——File/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -582,7 +568,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/06/01/设计模式/设计模式——外观模式/">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/21/Android实用之道/Android本地化全局对象的实践——SharePreferences/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="CoorChice">
@@ -607,8 +593,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/01/设计模式/设计模式——外观模式/" itemprop="url">
-                  设计模式——外观模式
+                <a class="post-title-link" href="/2016/08/21/Android实用之道/Android本地化全局对象的实践——SharePreferences/" itemprop="url">
+                  Android本地化全局对象的实践——SharePreferences
                 </a>
               
             
@@ -624,8 +610,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-01T06:00:00+08:00">
-                2016-06-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-21T06:00:00+08:00">
+                2016-08-21
               </time>
             
 
@@ -647,8 +633,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/Android实用之道/" itemprop="url" rel="index">
+                    <span itemprop="name">Android实用之道</span>
                   </a>
                 </span>
 
@@ -684,15 +670,12 @@
       
         
           
-          定义及实质
-定义  
-
-为子系统中的一组接口提供一个一致的界面，这个界面使得子系统更加容易使用。  
-解释：英雄吹响号角（相当于统一界面，用于发动攻击），命令部队对敌军发动攻击；接下来部队里的各种兵种开始对敌军发动攻击。咕噜兵发起了攻击，狼骑发起了攻击，牛头人发起了攻击，风骑士发起了攻击…号角这个统
+          上一篇讲到了使用File的方式来本地化全局对象，它适合体量较大的全局对象。对于一些体量较小的全局，并且对安全性有要求的对象，可以使用SharePreference来进行对像的本地化。注意，这种方式适合较小的对象，较大的对象还是应该选用File的方式。
+使用实例12345678910111213141
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/06/01/设计模式/设计模式——外观模式/#more" rel="contents">
+            <a class="btn" href="/2016/08/21/Android实用之道/Android本地化全局对象的实践——SharePreferences/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -733,7 +716,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/05/29/设计模式/设计模式——单例模式的5种实现/">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/20/Android实用之道/Reflect反射简略教程/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="CoorChice">
@@ -758,8 +741,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/29/设计模式/设计模式——单例模式的5种实现/" itemprop="url">
-                  设计模式——单例模式的5种实现
+                <a class="post-title-link" href="/2016/08/20/Android实用之道/Reflect反射简略教程/" itemprop="url">
+                  Reflect反射简略教程
                 </a>
               
             
@@ -775,8 +758,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-29T06:00:00+08:00">
-                2016-05-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-20T06:00:00+08:00">
+                2016-08-20
               </time>
             
 
@@ -798,8 +781,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/Android实用之道/" itemprop="url" rel="index">
+                    <span itemprop="name">Android实用之道</span>
                   </a>
                 </span>
 
@@ -835,18 +818,12 @@
       
         
           
-          单例模式是我们最常使用，也是最简单的一种模式，主要用于只想系统中存在一个实例的情况，比如某个Manager。
-定义及实质
-定义确保某一个类只有一个实例，而且自行实例化并向系统提供这个实例。  
-
-实质控制实例数量，确保只有一个实例。
-
-
-模式图解单例模式UML图很直观明了，很简单。下面来看看单例模式
+          简单介绍java的反射机制使java成为一种动态语言，通过反射机制能够在运行时或的一个对象的所有信息，包括他的包名，它的所有方法和成员变量。当然知道包名可以直接取得该类，从而获得他的实例。
+获取Class对象12345678//通过对象获得：class = b.getClass();//通过完整包类
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/05/29/设计模式/设计模式——单例模式的5种实现/#more" rel="contents">
+            <a class="btn" href="/2016/08/20/Android实用之道/Reflect反射简略教程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -887,7 +864,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/05/28/设计模式/设计模式——抽象工厂模式/">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/19/Android实用之道/Dagger2简略教程/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="CoorChice">
@@ -912,8 +889,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/28/设计模式/设计模式——抽象工厂模式/" itemprop="url">
-                  设计模式——抽象工厂模式
+                <a class="post-title-link" href="/2016/08/19/Android实用之道/Dagger2简略教程/" itemprop="url">
+                  Dagger2简略教程
                 </a>
               
             
@@ -929,8 +906,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-28T06:00:00+08:00">
-                2016-05-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-19T06:00:00+08:00">
+                2016-08-19
               </time>
             
 
@@ -952,8 +929,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/Android实用之道/" itemprop="url" rel="index">
+                    <span itemprop="name">Android实用之道</span>
                   </a>
                 </span>
 
@@ -989,12 +966,13 @@
       
         
           
-          抽象工厂模式和工厂方法模式很相似，都是延迟子类选择创建，但它们的不同点在于：  
-工厂方法模式专注于创建单个完整的产品，而抽象工厂模式专注于创建构一个完整产品的所有部件。比如说，工厂方法模式创建一把单手剑，而抽象工厂模式需要创建剑柄、剑体、需要用的材料等。它们思想相同，但关注点不一样。工厂方法模式可
+          什么是注解依赖
+依赖：当A类中有B类的实例时（或者A类需要用到B类的一些特性），就称B类为A类的依赖。
+注解：无需new就能把B类的一个实例添加到A类中的操作。Dagger2简介Dagger2是由Google接手Dagger1开发的一个注解框架，它的主要特性就是利用有向无环（这种结构意味着在你设计注
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/05/28/设计模式/设计模式——抽象工厂模式/#more" rel="contents">
+            <a class="btn" href="/2016/08/19/Android实用之道/Dagger2简略教程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1035,7 +1013,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/05/27/设计模式/设计模式——工厂方法模式/">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/18/Android实用之道/RxJava简略教程/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="CoorChice">
@@ -1060,8 +1038,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/27/设计模式/设计模式——工厂方法模式/" itemprop="url">
-                  设计模式——工厂方法模式
+                <a class="post-title-link" href="/2016/08/18/Android实用之道/RxJava简略教程/" itemprop="url">
+                  RxJava简略教程
                 </a>
               
             
@@ -1077,8 +1055,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-27T06:00:00+08:00">
-                2016-05-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-18T06:00:00+08:00">
+                2016-08-18
               </time>
             
 
@@ -1100,8 +1078,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/Android实用之道/" itemprop="url" rel="index">
+                    <span itemprop="name">Android实用之道</span>
                   </a>
                 </span>
 
@@ -1137,16 +1115,13 @@
       
         
           
-          工厂方法模式和简单工厂模式本质是类似的，都是用来封装产品的创建过程。但它们的实现也有很大的，所以通常被作为两种不同的设计模式看待。  
-定义及实质
-定义定义一个用于创建对象的接口，让子类决定实例化那一个对象，即使一个类的实现延迟到子类实现。
-实质延迟到子类选择实现。  
-
-虽然都是选择实现，但工厂方
+          中文官方文档  
+教程
+一、为什么要使用响应式编程1.尽管响应式编程代码量比普通线程处理方式代码量大，但是响应式的突出特点就是更符合人的逻辑思维，更容易被理解。2.响应式编程目的是为了处理线程工作的，它有一个观察者（Observer）在随时待命，准备接收可观察对象（Observable）发送的数据。
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/05/27/设计模式/设计模式——工厂方法模式/#more" rel="contents">
+            <a class="btn" href="/2016/08/18/Android实用之道/RxJava简略教程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1187,7 +1162,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/05/26/设计模式/设计模式——简单工厂模式/">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/17/Android实用之道/Android只需两步，使你的Android Studio支持Lambda表达式/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="CoorChice">
@@ -1212,8 +1187,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/26/设计模式/设计模式——简单工厂模式/" itemprop="url">
-                  设计模式——简单工厂模式
+                <a class="post-title-link" href="/2016/08/17/Android实用之道/Android只需两步，使你的Android Studio支持Lambda表达式/" itemprop="url">
+                  Android只需两步，使你的Android Studio支持Lambda表达式
                 </a>
               
             
@@ -1229,8 +1204,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-26T06:00:00+08:00">
-                2016-05-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-17T06:00:00+08:00">
+                2016-08-17
               </time>
             
 
@@ -1252,8 +1227,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/Android实用之道/" itemprop="url" rel="index">
+                    <span itemprop="name">Android实用之道</span>
                   </a>
                 </span>
 
@@ -1289,19 +1264,455 @@
       
         
           
-          定义及实质
-定义提供一个创建对象实例的功能(接口)，而客户调用时无须关心实现过程。属于创建型模式。
-实质选择实现。  
-
-模式图解简单工厂模式UML图解释：从上图可以看出:
-
-Factory依赖了Api接口和两个接口的实现类;
-而Client依赖Factory和Api接口；
-ImpA和ImpB是Ap
+          Java8的一大新特性就是较为健全的Lambda表达式，但是目前Android studio并不支持这一特性。但是可以通过在gradle中配置几行代码，引用Github上的资源，就可以让你的Android Studio支持Lambda表达式了。
+注意：使用Lambda之前，必需确保你的Java8是能
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/05/26/设计模式/设计模式——简单工厂模式/#more" rel="contents">
+            <a class="btn" href="/2016/08/17/Android实用之道/Android只需两步，使你的Android Studio支持Lambda表达式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/16/Android实用之道/Android多渠道打包——使用Python脚本秒打/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="CoorChice">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/img/avatar.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="CoorChice">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="CoorChice" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/16/Android实用之道/Android多渠道打包——使用Python脚本秒打/" itemprop="url">
+                  Android多渠道打包——使用Python脚本秒打
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-16T06:00:00+08:00">
+                2016-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android实用之道/" itemprop="url" rel="index">
+                    <span itemprop="name">Android实用之道</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言我们的应用通常会通过许多渠道发布到各个平台上，而我们需要追踪各个平台的下载信息，所以需要针对不同的平台打相应的包。但是平台众多，有的应用可能需要发布到几十的渠道上，使用传统的gradle脚本自动打包可能需要花费几个小时的时间。而改方法可以实现秒打100个各个渠道包的效果。这里我以使用最多的友盟统
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/08/16/Android实用之道/Android多渠道打包——使用Python脚本秒打/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/15/Android实用之道/Android多渠道打包——使用gradle进行多渠道自动打包/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="CoorChice">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/img/avatar.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="CoorChice">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="CoorChice" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/15/Android实用之道/Android多渠道打包——使用gradle进行多渠道自动打包/" itemprop="url">
+                  Android多渠道打包——使用gradle进行多渠道自动打包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-15T06:00:00+08:00">
+                2016-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android实用之道/" itemprop="url" rel="index">
+                    <span itemprop="name">Android实用之道</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言在我的另一篇文章中介绍了如何使用Python进行多渠道打包，下面再把传统的gradle多渠道打包方式介绍一下，同样是以友盟SDK为例。
+打包前配置配置gradle1234567891011121314151617181920212223242526272829303132333435363738
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/08/15/Android实用之道/Android多渠道打包——使用gradle进行多渠道自动打包/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/14/Android之夯实基础/Android退出程序的两种方式：killProcess（）和System.exit()/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="CoorChice">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/img/avatar.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="CoorChice">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="CoorChice" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/14/Android之夯实基础/Android退出程序的两种方式：killProcess（）和System.exit()/" itemprop="url">
+                  Android退出程序的两种方式：killProcess（）和System.exit()
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-14T06:00:00+08:00">
+                2016-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android之夯实基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Android之夯实基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          KillProcess()调用1android.os.Process.killProcess(android.os.Process.myPid())
+可以杀死当前应用活动的进程，这一操作将会把所有该进程内的资源（包括线程全部清理掉）。当然，由于ActivityManager时刻监听着进程，一旦发现进
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/08/14/Android之夯实基础/Android退出程序的两种方式：killProcess（）和System.exit()/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1336,6 +1747,10 @@ ImpA和ImpB是Ap
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
           
           </div>
@@ -1376,7 +1791,7 @@ ImpA和ImpB是Ap
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1385,7 +1800,7 @@ ImpA和ImpB是Ap
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1394,7 +1809,7 @@ ImpA和ImpB是Ap
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
