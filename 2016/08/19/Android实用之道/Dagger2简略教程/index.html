@@ -94,12 +94,14 @@
 <meta property="og:description" content="什么是注解依赖
 依赖：当A类中有B类的实例时（或者A类需要用到B类的一些特性），就称B类为A类的依赖。
 注解：无需new就能把B类的一个实例添加到A类中的操作。Dagger2简介Dagger2是由Google接手Dagger1开发的一个注解框架，它的主要特性就是利用有向无环（这种结构意味着在你设计注解框架的时候，不能形成循环）这样一种结构来描述类间的关系，从而达到一种“描述创建”的效果。比如：现在">
-<meta property="og:updated_time" content="2017-01-22T02:03:23.000Z">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
+<meta property="og:updated_time" content="2017-01-24T06:48:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dagger2简略教程">
 <meta name="twitter:description" content="什么是注解依赖
 依赖：当A类中有B类的实例时（或者A类需要用到B类的一些特性），就称B类为A类的依赖。
 注解：无需new就能把B类的一个实例添加到A类中的操作。Dagger2简介Dagger2是由Google接手Dagger1开发的一个注解框架，它的主要特性就是利用有向无环（这种结构意味着在你设计注解框架的时候，不能形成循环）这样一种结构来描述类间的关系，从而达到一种“描述创建”的效果。比如：现在">
+<meta name="twitter:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
 
 
 
@@ -393,6 +395,8 @@
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//加了@Singleton之后提示这个接口将被多个线程共同操作。</span></div><div class="line"><span class="variable">@Singleton</span></div><div class="line"><span class="variable">@Component</span>(module = &#123;CoffeMachine.class&#125;)</div><div class="line">public interface CoffeMakerComponent&#123;</div><div class="line">    <span class="comment">//这个方法指明需要注解的地方</span></div><div class="line">    <span class="selector-tag">TagerActivity</span> <span class="selector-tag">inject</span>(TagerActivity tagerActivity);</div><div class="line">    <span class="selector-tag">Suger</span> <span class="selector-tag">getSuger</span>();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//@Singleton标注后将只会产生一个Heater实例</span></div><div class="line">@<span class="selector-tag">Provides</span> @<span class="selector-tag">Singleton</span> <span class="selector-tag">Heater</span> <span class="selector-tag">provideHeater</span>()&#123;</div><div class="line">    <span class="selector-tag">return</span> <span class="selector-tag">new</span> <span class="selector-tag">Heater</span>()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h2><p>自定义注解符，可以注解一个自定义的注解符来描述一个作用范围。</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//下面注解了一个新的注解符——@PerActibity，使用这个注解符的地方作用范围将被限制在Activity的生命周期内。</span></div><div class="line"><span class="variable">@Scope</span></div><div class="line"><span class="variable">@Retention</span>(RUNTIME)</div><div class="line">public <span class="variable">@interface</span> PerActivity()&#123;&#125;</div><div class="line"><span class="comment">//下面注解了一个新的注解符——@PerFragemnt，使用这个注解符的地方作用范围将被限制在Fragment的生命周期内。</span></div><div class="line"><span class="variable">@Scope</span></div><div class="line"><span class="variable">@Retention</span>(RUNTIME)</div><div class="line">public <span class="variable">@interface</span> PerFragment()&#123;&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="CoorChice的公众号">  </p>
+
       
     </div>
 

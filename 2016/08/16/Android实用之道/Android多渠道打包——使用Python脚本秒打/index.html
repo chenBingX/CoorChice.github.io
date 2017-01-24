@@ -94,12 +94,14 @@
 <meta property="og:description" content="前言我们的应用通常会通过许多渠道发布到各个平台上，而我们需要追踪各个平台的下载信息，所以需要针对不同的平台打相应的包。但是平台众多，有的应用可能需要发布到几十的渠道上，使用传统的gradle脚本自动打包可能需要花费几个小时的时间。而改方法可以实现秒打100个各个渠道包的效果。这里我以使用最多的友盟统计SDK为例来讲解。
 需要准备的文件
 一个空的channel.apk(可以通过改.txt为.apk实">
-<meta property="og:updated_time" content="2017-01-22T01:57:06.000Z">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
+<meta property="og:updated_time" content="2017-01-24T06:36:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android多渠道打包——使用Python脚本秒打">
 <meta name="twitter:description" content="前言我们的应用通常会通过许多渠道发布到各个平台上，而我们需要追踪各个平台的下载信息，所以需要针对不同的平台打相应的包。但是平台众多，有的应用可能需要发布到几十的渠道上，使用传统的gradle脚本自动打包可能需要花费几个小时的时间。而改方法可以实现秒打100个各个渠道包的效果。这里我以使用最多的友盟统计SDK为例来讲解。
 需要准备的文件
 一个空的channel.apk(可以通过改.txt为.apk实">
+<meta name="twitter:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
 
 
 
@@ -390,6 +392,7 @@
 <p>仅仅一瞬间，我们会发现，在该文件夹下已经生成了我们需要的渠道包。</p>
 <h1 id="检验"><a href="#检验" class="headerlink" title="检验"></a>检验</h1><p>在Activity中加入如下代码，检验渠道信息是否成功包含到渠道包中：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">String</span> channelId = AnalyticsConfig.getChannel(getApplicationContext()); <span class="comment">//获取友盟的渠道配置信息</span></div><div class="line">      LogUtils.e(<span class="string">"channelId = "</span> + channelId);</div></pre></td></tr></table></figure></p>
 <h1 id="注意一些坑"><a href="#注意一些坑" class="headerlink" title="注意一些坑"></a>注意一些坑</h1><p>没安装专门的开发环境，在Mac下直接打开python文件编辑，会产生字符集不存在的错误。解决办法是在Android Studio中编辑好拖出来。或者在改动时，一些可以复制的字母和符号就直接复制过去用。</p>
+<p><img src="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="CoorChice的公众号">  </p>
 
       
     </div>

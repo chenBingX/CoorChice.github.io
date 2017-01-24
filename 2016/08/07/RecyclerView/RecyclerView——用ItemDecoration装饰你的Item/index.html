@@ -94,7 +94,8 @@
 背景介绍RecyclerView由于它强大的灵活性，已经可以代替掉传统的ListView和GridView等列表控件了。但是也因为它的灵活性，一些东西就没有固定，需要我们自己来实现，比如RecyclerView就没有提供默认的分割线，当我们需要一条分割线时，我们需要自己通过继承RecyclerView.ItemDecoration来实现。当然，它不仅仅可以实现分割线，还能创造">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1869462-da4ba78edaec2c94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1869462-f4738c4b750b1464.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-01-21T17:37:01.000Z">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
+<meta property="og:updated_time" content="2017-01-24T06:45:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RecyclerView——用ItemDecoration装饰你的Item">
 <meta name="twitter:description" content="参考资料参考资料1；
@@ -388,6 +389,7 @@
 <p>借张图，侵删！<br><img src="http://upload-images.jianshu.io/upload_images/1869462-f4738c4b750b1464.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果图"><br>这里有个坑，在我使用<code>mDrawable.canvas()</code>来绘制分割线的时候，由于<code>mDrawable.getIntrinscXXX()</code>获得的值为-1，所以导致了绘制效果不可见。解决办法是在计算<em>bottom</em>或<em>right</em>时，直接指定我们所希望的间距，除非我们已经设置mDrawable的尺寸。<br> <strong>还有一点需要注意：最终getItemOffset()方法中设置的偏移距离会叠加到Item的布局尺寸参数上，而分割线的绘制应该在Item底部(去尾)，或者说Item顶部(去头)，绘制区域</strong></p>
 <h3 id="onDrawOver"><a href="#onDrawOver" class="headerlink" title="onDrawOver()"></a>onDrawOver()</h3><p>与<code>onDraw()</code>方法类似，不同的是它将被覆盖在Item上面。它同样有两个重载方法:<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public void <span class="keyword">on</span>DrawOver(Canvas c, RecyclerView parent, State <span class="keyword">state</span>) &#123;</div><div class="line">            <span class="keyword">on</span>DrawOver(c, parent);</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">@Deprecated</div><div class="line">public void <span class="keyword">on</span>DrawOver(Canvas c, RecyclerView parent) &#123;</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过自定义<code>ItemDecoration</code>我们可以实现需要吊炸天的效果。先遵守规则，然后天马行空。</p>
+<p><img src="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="CoorChice的公众号">  </p>
 
       
     </div>
@@ -430,8 +432,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/08/Android之夯实基础/内存泄漏/" rel="prev" title="内存泄漏">
-                内存泄漏 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/08/RecyclerView/RecyclerView——使用ItemDragHelper来实现酷炫拖拽效果/" rel="prev" title="RecyclerView——使用ItemDragHelper来实现酷炫拖拽效果">
+                RecyclerView——使用ItemDragHelper来实现酷炫拖拽效果 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

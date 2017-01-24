@@ -95,7 +95,8 @@
 背景介绍在Java内存管理机制中我提到过内存抖动会引起频繁的GC，从而使UI线程被频繁阻塞，导致画面卡顿。这次我们就聊聊内存抖动。
 需要避免内存抖动内存抖动是由于短时间内有大量对象进出Young Generiation区导致的，它伴随着频繁的GC。通常存在内存抖动时，我们可以在Android Studio的Monitors中看到如下场景：下面是避免发生内存抖动的几">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1869462-46d3d34c4c013112.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-01-21T17:49:52.000Z">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
+<meta property="og:updated_time" content="2017-01-24T06:39:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内存抖动">
 <meta name="twitter:description" content="参考资料Google官方讲解视屏
@@ -388,6 +389,7 @@
 <li>对于能够复用的对象，同理可以使用<strong>对象池</strong>将它们缓存起来。</li>
 </ul>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>总之，因为<strong>内存抖动</strong>是由于大量对象在短时间内被配置而引起的，所以我们要做的就是谨慎对待那些可能会大量创建对象的情况。</p>
+<p><img src="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="CoorChice的公众号">  </p>
 
       
     </div>
