@@ -1,0 +1,876 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android实用之道," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="背景介绍日历对我的生活而言是一个容易被忽视，而又十分重要的东西。在Android中，我们也常常需要操作日历去实现一些需求。比如根据日期获取对应数据，或者承载了一些需求的自定义日历。为了方便对日期的操作，诞生了Calendar 类。这大大简化了我们的计算。事实上，我们只需要知道如何操作Calendar就行了。本篇我们将一起来了解下Calendar，并且实现一个自定义日历。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="还不了解Calendar？实现自定义Android日历，看这篇就够了">
+<meta property="og:url" content="http://chenbingx.github.io/2016/10/02/Android实用之道/还不了解Calendar？实现自定义Android日历，看这篇就够了/index.html">
+<meta property="og:site_name" content="CoorChice">
+<meta property="og:description" content="背景介绍日历对我的生活而言是一个容易被忽视，而又十分重要的东西。在Android中，我们也常常需要操作日历去实现一些需求。比如根据日期获取对应数据，或者承载了一些需求的自定义日历。为了方便对日期的操作，诞生了Calendar 类。这大大简化了我们的计算。事实上，我们只需要知道如何操作Calendar就行了。本篇我们将一起来了解下Calendar，并且实现一个自定义日历。">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/%E6%97%A5%E5%8E%86.jpg">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/Calendar.gif">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
+<meta property="og:updated_time" content="2017-02-06T07:56:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="还不了解Calendar？实现自定义Android日历，看这篇就够了">
+<meta name="twitter:description" content="背景介绍日历对我的生活而言是一个容易被忽视，而又十分重要的东西。在Android中，我们也常常需要操作日历去实现一些需求。比如根据日期获取对应数据，或者承载了一些需求的自定义日历。为了方便对日期的操作，诞生了Calendar 类。这大大简化了我们的计算。事实上，我们只需要知道如何操作Calendar就行了。本篇我们将一起来了解下Calendar，并且实现一个自定义日历。">
+<meta name="twitter:image" content="http://ogemdlrap.bkt.clouddn.com/%E6%97%A5%E5%8E%86.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chenbingx.github.io/2016/10/02/Android实用之道/还不了解Calendar？实现自定义Android日历，看这篇就够了/"/>
+
+
+
+
+
+  <title> 还不了解Calendar？实现自定义Android日历，看这篇就够了 | CoorChice </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CoorChice</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">欢迎探索CoorChice的博客</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/10/02/Android实用之道/还不了解Calendar？实现自定义Android日历，看这篇就够了/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="CoorChice">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/img/avatar.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="CoorChice">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="CoorChice" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                还不了解Calendar？实现自定义Android日历，看这篇就够了
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-02T06:00:00+08:00">
+                2016-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android实用之道/" itemprop="url" rel="index">
+                    <span itemprop="name">Android实用之道</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://ogemdlrap.bkt.clouddn.com/%E6%97%A5%E5%8E%86.jpg" alt="Calendar"></p>
+<h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>日历对我的生活而言是一个容易被忽视，而又十分重要的东西。在Android中，我们也常常需要操作日历去实现一些需求。比如根据日期获取对应数据，或者承载了一些需求的自定义日历。为了方便对日期的操作，诞生了<strong>Calendar</strong> 类。这大大简化了我们的计算。<br>事实上，我们只需要知道如何操作Calendar就行了。本篇我们将一起来了解下Calendar，并且实现一个自定义日历。<br><a id="more"></a></p>
+<h1 id="方便的Calendar类"><a href="#方便的Calendar类" class="headerlink" title="方便的Calendar类"></a>方便的Calendar类</h1><h2 id="Calendar是干什么的？"><a href="#Calendar是干什么的？" class="headerlink" title="Calendar是干什么的？"></a>Calendar是干什么的？</h2><blockquote>
+<p>The Calendar class is an abstract class that provides methods for converting between a specific instant in time and a set of calendar fields such as YEAR, MONTH, DAY_OF_MONTH, HOUR, and so on, and for manipulating the calendar fields, such as getting the date of the next week.  </p>
+</blockquote>
+<p>上面是Android文档中对Calendar是什么的简单介绍。大概的意思就是说，Calendar是一个抽象类。它提供了一些用于一个具体时间和Calendar的字段(比如，YEAR、MONTH、DAY_OF_MONTH、HOUR等)互相转换的方法，以及对Calendar的字段的操作方法(比如，获取下一周的日期)。<br>综上所述，Calendar就是一个操作日历的工具类。  </p>
+<h2 id="Calendar的使用"><a href="#Calendar的使用" class="headerlink" title="Calendar的使用"></a>Calendar的使用</h2><h3 id="获得一个Calendar实例"><a href="#获得一个Calendar实例" class="headerlink" title="获得一个Calendar实例"></a>获得一个Calendar实例</h3><figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Calendar calendar = Calendar.getInstance(); <span class="comment">//这个方法获取到的是默认的Calendar实例。</span></div><div class="line"><span class="comment">//一般使用默认的就好，它会根据app运行的时区、语言环境自动创建相应的Calendar实例。</span></div><div class="line"></div><div class="line">Calendar calendar = Calendar.getInstance(<span class="built_in">Locale</span>.CHINA); <span class="comment">//根据Locale来获取相应的Calendar实例。</span></div><div class="line"></div><div class="line">Calendar calendar = Calendar.getInstance(TimeZone.getDefaultRef(), <span class="built_in">Locale</span>.CHINA);</div><div class="line"><span class="comment">//根据TimeZone和Locale来获取相应的Calendar实例。</span></div><div class="line"></div><div class="line"><span class="comment">//这些方法最终调用的都是createCalendar()</span></div><div class="line"><span class="keyword">private</span> static Calendar createCalendar(TimeZone zone,  <span class="built_in">Locale</span> aLocale) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">new</span> GregorianCalendar(zone, aLocale); <span class="comment">//Android中使用了GregorianCalendar。</span></div><div class="line">    <span class="comment">//注意这里每次都是new一个新的Calendar实例。</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="挑几个方法特别说明下"><a href="#挑几个方法特别说明下" class="headerlink" title="挑几个方法特别说明下"></a>挑几个方法特别说明下</h3><ul>
+<li>set(f, value)   </li>
+</ul>
+<ol>
+<li>调用该方法可以把Calendar的某个字段f的值设置为指定值value。  </li>
+<li>这里需要注意：DAY_OF_MONTH字段是从1开始，如果设置0，表示上个月的最后一天；MONTH字段是从0开始，如果设置12，表示下一年的第一个月。  </li>
+<li>set()方法设置后，仅仅是改变了Calendar的指定字段的值，但是Calendar表示的日期并没有重新计算。Calendar将会在下次调用get()、getTime()、getTimeInMillis()、add()或roll()方法时，真实的重新计算日期。</li>
+</ol>
+<ul>
+<li><p>add(f, delta)<br>效果等同于调用了set(f, get(f) + delta)l。</p>
+</li>
+<li><p>roll(f, delta)<br>效果和add()有些类似。但是它的作用范围限制在f字段上，不会影响到其它字段。举个栗子。</p>
+</li>
+</ul>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Calendar </span><span class="keyword">calendar </span>= <span class="keyword">Calendar.getInstance();</span></div><div class="line"><span class="keyword">calendar.set(2016,1,1);</span></div><div class="line"><span class="keyword">calendar.roll(Calendar.DAY_OF_MONTH, </span><span class="number">32</span>)<span class="comment">;</span></div><div class="line">SimpleDateFormat dateFormat = new SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>)<span class="comment">;</span></div><div class="line">System.out.println(dateFormat.format(<span class="keyword">calendar.getTime()));</span></div></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">2016</span><span class="number">-01</span><span class="number">-01</span></div></pre></td></tr></table></figure></p>
+<p>看出来没？它只在DAY_OF_MONTH这个字段里循环，而不会导致其它字段发生变化。</p>
+<ul>
+<li><p>getFirstDayOfWeek()<br>这个方法用于获取一个周的第一天是周几。一般一个周的第一天是星期天，但法国的是星期一。</p>
+</li>
+<li><p>clone()<br>这个方法是由Clonable接口提供的。可以克隆一个Calendar实例。这很有用，可以避免混乱的操作Calendar。</p>
+</li>
+</ul>
+<h3 id="其它方法的使用请点击链接看"><a href="#其它方法的使用请点击链接看" class="headerlink" title="其它方法的使用请点击链接看"></a>其它方法的使用请点击链接看</h3><p><a href="http://www.howsoftworks.net/javaapi/java.util/calendar_calendar.html" target="_blank" rel="external">Calendar的方法使用大全</a></p>
+<h3 id="几个特殊的规则"><a href="#几个特殊的规则" class="headerlink" title="几个特殊的规则"></a>几个特殊的规则</h3><ul>
+<li>GregorianCalendar的时间原点是1970-01-01 00:00:00.000。所以通过getTimeInMillis()获得的时间戳就是时间原点的偏移量。</li>
+<li>日期大小规则<br>Thus, 23:59 on Dec 31, 1999 &lt; 00:00 on Jan 1, 2000 &lt; 00:01 on Jan 1, 2000.<br>12:00 am (midnight) &lt; 12:01 am, and 12:00 pm (noon) &lt; 12:01 pm.   </li>
+</ul>
+<h1 id="撸个自定义日历"><a href="#撸个自定义日历" class="headerlink" title="撸个自定义日历"></a>撸个自定义日历</h1><p>上个效果图，比较简陋，各位看官见谅啊。主要是为了说明下Calendar的使用。<br><img src="http://ogemdlrap.bkt.clouddn.com/Calendar.gif" alt="日历"><br>主要使用了ViewPager + Fragment + RecyclerView完成。但这不是重点。重点是Calendar！所以我就放核心的代码。其它部分和大家平时使用的ViewPager + Fragment + RecyclerView也都差不多。且看～<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initData</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    dateList.clear();</div><div class="line"></div><div class="line">    initialDate = (Date) getArguments().getSerializable(KEY_DATE);  <span class="comment">//获取传过来的Date，用于确定初始的calendar</span></div><div class="line">    Calendar calendar = Calendar.getInstance(Locale.CHINA); <span class="comment">//获取China区Calendar实例，实际是GregorianCalendar的一个实例</span></div><div class="line">    calendar.setTime(initialDate); <span class="comment">//初始化日期</span></div><div class="line">    <span class="keyword">int</span> maxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);  <span class="comment">//获得当前日期所在月份有多少天（或者说day的最大值)，用于后面的计算</span></div><div class="line"></div><div class="line">    Calendar calendarClone = (Calendar) calendar.clone(); <span class="comment">//克隆一个Calendar再进行操作，避免造成混乱</span></div><div class="line">    calendarClone.<span class="keyword">set</span>(Calendar.DAY_OF_MONTH, <span class="number">1</span>);  <span class="comment">//将日期调到当前月份的第一天</span></div><div class="line">    <span class="keyword">int</span> startDayOfWeek = calendarClone.<span class="keyword">get</span>(Calendar.DAY_OF_WEEK); <span class="comment">//获得当前日期所在月份的第一天是星期几</span></div><div class="line">    calendarClone.<span class="keyword">set</span>(Calendar.DAY_OF_MONTH, maxDay); <span class="comment">//将日期调到当前月份的最后一天</span></div><div class="line">    <span class="keyword">int</span> endDayOfWeek = calendarClone.<span class="keyword">get</span>(Calendar.DAY_OF_WEEK); <span class="comment">//获得当前日期所在月份的最后一天是星期几</span></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 计算上一个月在本月日历页出现的那几天.</div><div class="line">     * 比如，startDayOfWeek = 3，表示当月第一天是星期二，所以日历向前会空出2天的位置，那么让上月的最后两天显示在星期日和星期一的位置上.</div><div class="line">     */</div><div class="line">    <span class="keyword">int</span> startEmptyCount = startDayOfWeek - <span class="number">1</span>; <span class="comment">//上月在本月日历页因该出现的天数。</span></div><div class="line">    Calendar preCalendar = (Calendar) calendar.clone();  <span class="comment">//克隆一份再操作</span></div><div class="line">    preCalendar.<span class="keyword">set</span>(Calendar.DAY_OF_MONTH, <span class="number">1</span>); <span class="comment">//将日期调到当月第一天</span></div><div class="line">    preCalendar.<span class="keyword">add</span>(Calendar.DAY_OF_MONTH, -startEmptyCount); <span class="comment">//向前推移startEmptyCount天</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; startEmptyCount; i++) &#123;</div><div class="line">      DateInfo dateInfo = <span class="keyword">new</span> DateInfo(); <span class="comment">//使用DateInfo来储存所需的相关信息</span></div><div class="line">      dateInfo.setDate(preCalendar.getTime());</div><div class="line">      dateInfo.setType(DateInfo.PRE_MONTH); <span class="comment">//标记日期信息的类型为上个月</span></div><div class="line">      dateList.<span class="keyword">add</span>(dateInfo); <span class="comment">//将日期添加到数组中</span></div><div class="line">      preCalendar.<span class="keyword">add</span>(Calendar.DAY_OF_MONTH, <span class="number">1</span>); <span class="comment">//向后推移一天</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 计算当月的每一天日期</div><div class="line">     */</div><div class="line">    calendar.<span class="keyword">set</span>(Calendar.DAY_OF_MONTH, <span class="number">1</span>); <span class="comment">//由于是获取当月日期信息，所以直接操作当月Calendar即可。将日期调为当月第一天</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxDay; i++) &#123;</div><div class="line">      DateInfo dateInfo = <span class="keyword">new</span> DateInfo();</div><div class="line">      dateInfo.setDate(calendar.getTime());</div><div class="line">      dateInfo.setType(DateInfo.CURRENT_MONTH);  <span class="comment">//标记日期信息的类型为当月</span></div><div class="line">      dateList.<span class="keyword">add</span>(dateInfo);</div><div class="line">      calendar.<span class="keyword">add</span>(Calendar.DAY_OF_MONTH, <span class="number">1</span>); <span class="comment">//向后推移一天</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 计算下月在本月日历页出现的那几天。</div><div class="line">     * 比如，endDayOfWeek = 6，表示当月第二天是星期五，所以日历向后会空出1天的位置，那么让下月的第一天显示在星期六的位置上。</div><div class="line">     */</div><div class="line">    <span class="keyword">int</span> endEmptyCount = <span class="number">7</span> - endDayOfWeek; <span class="comment">//下月在本月日历页上因该出现的天数</span></div><div class="line">    Calendar afterCalendar = (Calendar) calendar.clone(); <span class="comment">//同样，克隆一份在操作</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; endEmptyCount; i++) &#123;</div><div class="line">      DateInfo dateInfo = <span class="keyword">new</span> DateInfo();</div><div class="line">      dateInfo.setDate(afterCalendar.getTime());</div><div class="line">      dateInfo.setType(DateInfo.AFTER_MONTH); <span class="comment">//将DateInfo类型标记为下个月</span></div><div class="line">      dateList.<span class="keyword">add</span>(dateInfo);</div><div class="line">      afterCalendar.<span class="keyword">add</span>(Calendar.DAY_OF_MONTH, <span class="number">1</span>); <span class="comment">//向后推移一天</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">//DateInfo有必要放一下。不过这仅代表我的思路。</span></div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">DateInfo</span> &#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> final <span class="keyword">int</span> PRE_MONTH = <span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> final <span class="keyword">int</span> CURRENT_MONTH = PRE_MONTH + <span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> final <span class="keyword">int</span> AFTER_MONTH = CURRENT_MONTH + <span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> final <span class="keyword">int</span> WEEK_TITLE = AFTER_MONTH + <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Date date;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> type;</div><div class="line">    <span class="keyword">private</span> String weekTitle;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">getDate</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> date;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDate</span>(<span class="params">Date date</span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.date = date;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> type;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setType</span>(<span class="params"><span class="keyword">int</span> type</span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.type = type;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getWeekTitle</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> weekTitle;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWeekTitle</span>(<span class="params">String weekTitle</span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.weekTitle = weekTitle;</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>后面只需要把<strong>dateList</strong> 中的数据放到RecyclerView中就可以。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>到此想必大家也对Calendar有了个基本点的了解。平时用的比较多的就是get(),getTime(),set(),add(),roll()等方法，我在上面提了几个特殊点的。其它的可以到上面提到那个链接里熟悉，写的比较详细的。这波【农夫山泉】我就不搬了。</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<li><a href="https://developer.android.com/reference/java/util/Calendar.html" target="_blank" rel="external">Android文档</a></li>
+<li><a href="http://www.howsoftworks.net/javaapi/java.util/calendar_calendar.html" target="_blank" rel="external">How Soft Works-Calendar</a></li>
+</ol>
+<p><img src="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="CoorChice的公众号"> </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android实用之道/" rel="tag"># Android实用之道</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/20/Android实用之道/什么？IOS的专利？Android也能流畅实现毛玻璃效果(高斯模糊)效果/" rel="next" title="什么？IOS的专利？Android也能流畅实现毛玻璃效果(高斯模糊)效果">
+                <i class="fa fa-chevron-left"></i> 什么？IOS的专利？Android也能流畅实现毛玻璃效果(高斯模糊)效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.JPG"
+               alt="CoorChice" />
+          <p class="site-author-name" itemprop="name">CoorChice</p>
+          <p class="site-description motion-element" itemprop="description">我是CoorChice，我为自己代言。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方便的Calendar类"><span class="nav-number">2.</span> <span class="nav-text">方便的Calendar类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Calendar是干什么的？"><span class="nav-number">2.1.</span> <span class="nav-text">Calendar是干什么的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calendar的使用"><span class="nav-number">2.2.</span> <span class="nav-text">Calendar的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获得一个Calendar实例"><span class="nav-number">2.2.1.</span> <span class="nav-text">获得一个Calendar实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挑几个方法特别说明下"><span class="nav-number">2.2.2.</span> <span class="nav-text">挑几个方法特别说明下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它方法的使用请点击链接看"><span class="nav-number">2.2.3.</span> <span class="nav-text">其它方法的使用请点击链接看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几个特殊的规则"><span class="nav-number">2.2.4.</span> <span class="nav-text">几个特殊的规则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#撸个自定义日历"><span class="nav-number">3.</span> <span class="nav-text">撸个自定义日历</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoorChice</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+
