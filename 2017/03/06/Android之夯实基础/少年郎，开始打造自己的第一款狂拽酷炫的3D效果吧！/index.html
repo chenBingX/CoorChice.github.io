@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android实用之道,打包," />
+  <meta name="keywords" content="Android之夯实基础," />
 
 
 
@@ -84,21 +84,21 @@
 
 
 
-<meta name="description" content="前言在我的另一篇文章中介绍了如何使用Python进行多渠道打包，下面再把传统的gradle多渠道打包方式介绍一下，同样是以友盟SDK为例。
-打包前配置配置gradle123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263">
+<meta name="description" content="背景介绍Android中有两个Camera类。一个是android.hardware.Camera，用于对设备的摄像头进行操作。另一个是android.graphics.Camera，可用于进行3D变换，然后把变换后的矩阵Matrix作用于Canvas等，我们本篇要介绍的就是这个Camera类。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android多渠道打包——使用gradle进行多渠道自动打包">
-<meta property="og:url" content="http://chenbingx.github.io/2016/08/15/Android实用之道/Android多渠道打包——使用gradle进行多渠道自动打包/index.html">
+<meta property="og:title" content="少年郎，开始打造自己的第一款狂拽酷炫的3D效果吧！">
+<meta property="og:url" content="http://chenbingx.github.io/2017/03/06/Android之夯实基础/少年郎，开始打造自己的第一款狂拽酷炫的3D效果吧！/index.html">
 <meta property="og:site_name" content="CoorChice">
-<meta property="og:description" content="前言在我的另一篇文章中介绍了如何使用Python进行多渠道打包，下面再把传统的gradle多渠道打包方式介绍一下，同样是以友盟SDK为例。
-打包前配置配置gradle123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263">
-<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
-<meta property="og:updated_time" content="2017-01-24T06:35:33.000Z">
+<meta property="og:description" content="背景介绍Android中有两个Camera类。一个是android.hardware.Camera，用于对设备的摄像头进行操作。另一个是android.graphics.Camera，可用于进行3D变换，然后把变换后的矩阵Matrix作用于Canvas等，我们本篇要介绍的就是这个Camera类。">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-17%2012.48.07.png">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/Android%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87.jpeg">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/3D_1.gif">
+<meta property="og:image" content="http://ogemdlrap.bkt.clouddn.com/3D_2.gif">
+<meta property="og:updated_time" content="2017-03-06T06:14:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android多渠道打包——使用gradle进行多渠道自动打包">
-<meta name="twitter:description" content="前言在我的另一篇文章中介绍了如何使用Python进行多渠道打包，下面再把传统的gradle多渠道打包方式介绍一下，同样是以友盟SDK为例。
-打包前配置配置gradle123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263">
-<meta name="twitter:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg">
+<meta name="twitter:title" content="少年郎，开始打造自己的第一款狂拽酷炫的3D效果吧！">
+<meta name="twitter:description" content="背景介绍Android中有两个Camera类。一个是android.hardware.Camera，用于对设备的摄像头进行操作。另一个是android.graphics.Camera，可用于进行3D变换，然后把变换后的矩阵Matrix作用于Canvas等，我们本篇要介绍的就是这个Camera类。">
+<meta name="twitter:image" content="http://ogemdlrap.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-17%2012.48.07.png">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://chenbingx.github.io/2016/08/15/Android实用之道/Android多渠道打包——使用gradle进行多渠道自动打包/"/>
+  <link rel="canonical" href="http://chenbingx.github.io/2017/03/06/Android之夯实基础/少年郎，开始打造自己的第一款狂拽酷炫的3D效果吧！/"/>
 
 
 
 
 
-  <title> Android多渠道打包——使用gradle进行多渠道自动打包 | CoorChice </title>
+  <title> 少年郎，开始打造自己的第一款狂拽酷炫的3D效果吧！ | CoorChice </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +278,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2016/08/15/Android实用之道/Android多渠道打包——使用gradle进行多渠道自动打包/">
+  <link itemprop="mainEntityOfPage" href="http://chenbingx.github.io/2017/03/06/Android之夯实基础/少年郎，开始打造自己的第一款狂拽酷炫的3D效果吧！/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="CoorChice">
@@ -302,7 +302,7 @@
             
             
               
-                Android多渠道打包——使用gradle进行多渠道自动打包
+                少年郎，开始打造自己的第一款狂拽酷炫的3D效果吧！
               
             
           </h1>
@@ -317,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-15T06:00:00+08:00">
-                2016-08-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-06T06:00:00+08:00">
+                2017-03-06
               </time>
             
 
@@ -340,8 +340,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android实用之道/" itemprop="url" rel="index">
-                    <span itemprop="name">Android实用之道</span>
+                  <a href="/categories/Android之夯实基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Android之夯实基础</span>
                   </a>
                 </span>
 
@@ -375,11 +375,65 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在我的另一篇文章中介绍了如何使用Python进行多渠道打包，下面再把传统的gradle多渠道打包方式介绍一下，同样是以友盟SDK为例。</p>
-<h1 id="打包前配置"><a href="#打包前配置" class="headerlink" title="打包前配置"></a>打包前配置</h1><h2 id="配置gradle"><a href="#配置gradle" class="headerlink" title="配置gradle"></a>配置gradle</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//主要是配置android&#123;&#125;封包下的内容</span></div><div class="line">android &#123;</div><div class="line">            。</div><div class="line">            。</div><div class="line">            。</div><div class="line">signingConfigs &#123; <span class="comment">//配置签名文件，可以有多个</span></div><div class="line">        icekey &#123; </div><div class="line">            keyAlias <span class="string">'icekey'</span></div><div class="line">            keyPassword <span class="string">'填入key的密码'</span></div><div class="line">            storeFile <span class="keyword">file</span>(<span class="string">'/Users/**********/icekey.jks'</span>)  <span class="comment">//key所在文件夹</span></div><div class="line">            storePassword <span class="string">'填入store的密码'</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    buildTypes &#123; <span class="comment">//配置构建版本，可以有多个</span></div><div class="line">        <span class="comment">//测试版本</span></div><div class="line">        debug &#123;</div><div class="line">            debuggable <span class="keyword">true</span></div><div class="line">            zipAlignEnabled <span class="keyword">false</span></div><div class="line">            shrinkResources <span class="keyword">false</span></div><div class="line">            signingConfig signingConfigs.icekey</div><div class="line">            minifyEnabled <span class="keyword">false</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//发布版本</span></div><div class="line">        release &#123;</div><div class="line">            debuggable <span class="keyword">false</span> <span class="comment">//是否开启测试</span></div><div class="line">            zipAlignEnabled <span class="keyword">true</span> <span class="comment">//是否启用zipAlign压缩优化</span></div><div class="line">            shrinkResources <span class="keyword">true</span> <span class="comment">//是否删除未被使用的资源文件</span></div><div class="line">            minifyEnabled <span class="keyword">false</span>  <span class="comment">//是否开启混淆</span></div><div class="line">            signingConfig signingConfigs.icekey <span class="comment">//签名文件</span></div><div class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">            <span class="comment">//指定混淆文件</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//空版本</span></div><div class="line">        <span class="keyword">source</span> &#123;</div><div class="line">            debuggable <span class="keyword">true</span> <span class="comment">//是否开启测试</span></div><div class="line">            zipAlignEnabled <span class="keyword">true</span> <span class="comment">//是否启用zipAlign压缩优化</span></div><div class="line">            shrinkResources <span class="keyword">true</span> <span class="comment">//是否删除未被使用的资源文件</span></div><div class="line">            minifyEnabled <span class="keyword">false</span>  <span class="comment">//是否开启混淆</span></div><div class="line">            signingConfig signingConfigs.icekey <span class="comment">//签名文件</span></div><div class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">            <span class="comment">//指定混淆文件</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//创建渠道名称,main&#123;&#125;是一个不合法名称</span></div><div class="line">    productFlavors &#123;</div><div class="line">        baidu &#123;&#125;</div><div class="line">        huawei &#123;&#125;</div><div class="line">        xiaomi &#123;&#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//    这里体现在AndroidManifest中的</span></div><div class="line"><span class="comment">//    &lt;meta-data</span></div><div class="line"><span class="comment">//    android:name="UMENG_CHANNEL"</span></div><div class="line"><span class="comment">//    android:value="$&#123;UMENG_CHANNEL_VALUE&#125;"/&gt;</span></div><div class="line">    <span class="comment">//运行自动赋值给AndroidManifest.xml中的$&#123;UMENG_CHANNEL_VALUE&#125;</span></div><div class="line">    productFlavors.all &#123;</div><div class="line">        flavor -&gt; flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    lintOptions &#123; <span class="comment">//配置打包线程的操作</span></div><div class="line">        ignoreWarnings <span class="keyword">true</span> <span class="comment">//忽略警告</span></div><div class="line">        checkReleaseBuilds <span class="keyword">false</span> <span class="comment">//是否检查release版本</span></div><div class="line">        abortOnError <span class="keyword">false</span> <span class="comment">//出现错误是否终止</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">        applicationVariants.all &#123; variant -&gt;</div><div class="line">        variant.outputs.<span class="keyword">each</span> &#123; output -&gt;</div><div class="line">            <span class="keyword">def</span> outputFile = output.outputFile</div><div class="line">            <span class="keyword">if</span> (outputFile != <span class="keyword">null</span> &amp;&amp; outputFile.name.endsWith(<span class="string">".apk"</span>)) &#123;  <span class="comment">//判断是否是apk</span></div><div class="line">                <span class="comment">//这个函数生成了apk的名称</span></div><div class="line">                <span class="keyword">def</span> apkName = <span class="string">"ice-$&#123;variant.productFlavors[0].name&#125;-$&#123;defaultConfig.versionName&#125;.apk"</span></div><div class="line">                output.outputFile = <span class="keyword">new</span> <span class="keyword">File</span>(outputFile.parent, apkName) <span class="comment">//输出文件</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">            。</div><div class="line">            。</div><div class="line">            。</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="配置AndroidManifest-xml"><a href="#配置AndroidManifest-xml" class="headerlink" title="配置AndroidManifest.xml"></a>配置AndroidManifest.xml</h2><p>在Application标签下添加：<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!--友盟的key--&gt;</span></span></div><div class="line">   <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">     <span class="attr">android:name</span>=<span class="string">"UMENG_APPKEY"</span></div><div class="line">     <span class="attr">android:value</span>=<span class="string">"57bf375ee0f5*******018a3"</span>/&gt;</div><div class="line">   <span class="comment">&lt;!--友盟渠道号--&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">     <span class="attr">android:name</span>=<span class="string">"UMENG_CHANNEL"</span></div><div class="line">     <span class="attr">android:value</span>=<span class="string">"$</span><span class="template-variable">&#123;UMENG_CHANNEL_VALUE&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>/&gt;</span> //这样写就能够读取gradle中的[UMENG_CHANNEL_VALUE: name]的name的值了。</span></div></pre></td></tr></table></figure></p>
-<h1 id="开始自动打包"><a href="#开始自动打包" class="headerlink" title="开始自动打包"></a>开始自动打包</h1><p>在Android Studio的的终端机中输入<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./gradlew assembleRelease  <span class="comment">//打包所有渠道的Release版包</span></div><div class="line">./gradlew assembleSource <span class="comment">//打包所有渠道的Source版包</span></div></pre></td></tr></table></figure></p>
-<p><img src="http://ogemdlrap.bkt.clouddn.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg" alt="CoorChice的公众号">  </p>
+        <p><img src="http://ogemdlrap.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-17%2012.48.07.png" alt="封面"></p>
+<h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>Android中有两个Camera类。一个是<strong>android.hardware.Camera</strong>，用于对设备的摄像头进行操作。另一个是<strong>android.graphics.Camera</strong>，可用于进行3D变换，然后把变换后的矩阵Matrix作用于Canvas等，我们本篇要介绍的就是这个Camera类。<br><a id="more"></a></p>
+<h1 id="玩转Camera"><a href="#玩转Camera" class="headerlink" title="玩转Camera"></a>玩转Camera</h1><p>前面我们提到过，Camera是一个能够进行3D变化的类，在进行玩3D变换后，我们能够通过<code>mCamera.getMatrix(Matrix)</code>把变换矩阵Matrix赋值，然后可以用在Canvas上。或者，你可以直接通过<code>mCamera.applyToCanvas(Canvas)</code>直接把变换作用到一个Canvas上。</p>
+<h2 id="Android中的三维坐标轴"><a href="#Android中的三维坐标轴" class="headerlink" title="Android中的三维坐标轴"></a>Android中的三维坐标轴</h2><p>Android中的三维坐标轴符合左手坐标系。<br><img src="http://ogemdlrap.bkt.clouddn.com/Android%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87.jpeg" alt="image">  </p>
+<p>Camera默认的位置是在(0, 0, -8)点。</p>
+<h2 id="Camera的变换操作"><a href="#Camera的变换操作" class="headerlink" title="Camera的变换操作"></a>Camera的变换操作</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">getMatrix(mMatrix)</td>
+<td style="text-align:center">给mMatrix赋值。</td>
+</tr>
+<tr>
+<td style="text-align:center">applyToCanvas(mCanvas)</td>
+<td style="text-align:center">将变换获得的Matrix直接作用到mCanvas上。</td>
+</tr>
+<tr>
+<td style="text-align:center">rotate(x,y,z)</td>
+<td style="text-align:center">旋转。</td>
+</tr>
+<tr>
+<td style="text-align:center">rotateX、rotateY、rotateZ</td>
+<td style="text-align:center">旋转。</td>
+</tr>
+<tr>
+<td style="text-align:center">getLocationX、getLocationY、getLocationZ</td>
+<td style="text-align:center">获得Camera的位置，默认是在(0,0,-8)点。</td>
+</tr>
+<tr>
+<td style="text-align:center">setLocation(x,y,z)</td>
+<td style="text-align:center">设置camera的位置。</td>
+</tr>
+<tr>
+<td style="text-align:center">translate(x,y,z)</td>
+<td style="text-align:center">平移Camera。</td>
+</tr>
+<tr>
+<td style="text-align:center">save()</td>
+<td style="text-align:center">与Canvas的类似。</td>
+</tr>
+<tr>
+<td style="text-align:center">restore()</td>
+<td style="text-align:center">与Canvas类似。</td>
+</tr>
+</tbody>
+</table>
+<p>Camera的方法并不多，所以使用起来也是比较简单明了的。  </p>
+<h2 id="Camera的使用实例"><a href="#Camera的使用实例" class="headerlink" title="Camera的使用实例"></a>Camera的使用实例</h2><p>由于使用Camera的核心就是获得一个变换后的Matrix，所以你需要对Matrix具有一定的认识。关于Matrix的入门级使用，可以参考一下我的这两篇博客。<br><a href="http://www.jianshu.com/p/34e517a5b0d0" target="_blank" rel="external">Android——Matrix变换矩阵的探索(1)</a>；<br><a href="http://www.jianshu.com/p/b845979271d3" target="_blank" rel="external">Android——Matrix变换矩阵的探索（2）</a>   </p>
+<h3 id="演示Demo1"><a href="#演示Demo1" class="headerlink" title="演示Demo1"></a>演示Demo1</h3><p><img src="http://ogemdlrap.bkt.clouddn.com/3D_1.gif" alt="image"><br>下面是github源码的链接：<br><a href="https://github.com/chenBingX/CoorChiceLibOne/blob/master/app/src/main/java/com/chenbing/coorchicelibone/CustemViews/CameraTest.java" target="_blank" rel="external">Github源码链接</a>  </p>
+<h3 id="3D-ViewGroup演示"><a href="#3D-ViewGroup演示" class="headerlink" title="3D ViewGroup演示"></a>3D ViewGroup演示</h3><p><img src="http://ogemdlrap.bkt.clouddn.com/3D_2.gif" alt="image"></p>
+<p><a href="https://github.com/chenBingX/CoorChiceLibOne/blob/master/app/src/main/java/com/chenbing/coorchicelibone/CustemViews/SquareLayout.java" target="_blank" rel="external">Github源码链接</a>  </p>
+<h3 id="Camera用于自定义动画"><a href="#Camera用于自定义动画" class="headerlink" title="Camera用于自定义动画"></a>Camera用于自定义动画</h3><p>直接上个代码实例，用法和前面的例子没什么本质区别，都是通过Camera变换之后获得Matrix矩阵。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Custom3DAnimation</span> <span class="keyword">extends</span> <span class="title">Animation</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Camera mCamera;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> centerWidth;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> centerHeight;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setmRotateY</span><span class="params">(<span class="keyword">float</span> mRotateY)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mRotateY = mRotateY;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mRotateY;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Custom3DAnimation</span><span class="params">()</span> </span>&#123;</div><div class="line">        mCamera = <span class="keyword">new</span> Camera();</div><div class="line">        mRotateY = <span class="number">90</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">applyTransformation</span><span class="params">(<span class="keyword">float</span> interpolatedTime, Transformation t)</span> </span>&#123;</div><div class="line">                Matrix matrix = t.getMatrix();  <span class="comment">//获得Transformation的Matrix</span></div><div class="line">                mCamera.save();<span class="comment">//保存当前镜头状态</span></div><div class="line">        mCamera.rotateY(mRotateY * interpolatedTime); <span class="comment">//使相机旋转</span></div><div class="line">        mCamera.getMatrix(matrix); <span class="comment">//将旋转变换作用到matrix上</span></div><div class="line">        mCamera.restore(); <span class="comment">//合并镜头层</span></div><div class="line">        matrix.preTranslate(centerWidth, centerHeight);<span class="comment">//操作前平移</span></div><div class="line">        matrix.postTranslate(-centerWidth, -centerHeight); <span class="comment">//操作后平移</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height, <span class="keyword">int</span> parentWidth, <span class="keyword">int</span> parentHeight)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.initialize(width, height, parentWidth, parentHeight);</div><div class="line">                setDuration(<span class="number">5</span> * <span class="number">1000</span>); <span class="comment">//设置默认持续时间</span></div><div class="line">        setFillAfter(<span class="keyword">true</span>); <span class="comment">//设置动画结束后是否保持状态</span></div><div class="line">        setInterpolator(<span class="keyword">new</span> LinearInterpolator()); <span class="comment">//设置插值器</span></div><div class="line">        centerWidth = width / <span class="number">2</span>;</div><div class="line">                centerHeight = height / <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Camera的使用其实并不复杂，只需要记住前面提到的几个方法就行。由于Camera最终是输出一个矩阵，所以还需要对矩阵有一定的掌握。上面我已经给出了矩阵快速使用的指南，大家可以根据情况自行参考。  </p>
+<p>如果你觉得还不错，那就动动小捶捶敲个关注、点个赞哦😘！</p>
 
       
     </div>
@@ -403,9 +457,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android实用之道/" rel="tag"># Android实用之道</a>
-          
-            <a href="/tags/打包/" rel="tag"># 打包</a>
+            <a href="/tags/Android之夯实基础/" rel="tag"># Android之夯实基础</a>
           
         </div>
       
@@ -414,8 +466,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/14/Android之夯实基础/Android退出程序的两种方式：killProcess（）和System.exit()/" rel="next" title="Android退出程序的两种方式：killProcess（）和System.exit()">
-                <i class="fa fa-chevron-left"></i> Android退出程序的两种方式：killProcess（）和System.exit()
+              <a href="/2017/01/02/Android之夯实基础/Android线程间通讯及主线程启动/" rel="next" title="惊天秘密！从Thread开始，揭露Android线程通讯的诡计和主线程的阴谋">
+                <i class="fa fa-chevron-left"></i> 惊天秘密！从Thread开始，揭露Android线程通讯的诡计和主线程的阴谋
               </a>
             
           </div>
@@ -423,10 +475,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/16/Android实用之道/Android多渠道打包——使用Python脚本秒打/" rel="prev" title="Android多渠道打包——使用Python脚本秒打">
-                Android多渠道打包——使用Python脚本秒打 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -555,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打包前配置"><span class="nav-number">2.</span> <span class="nav-text">打包前配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置gradle"><span class="nav-number">2.1.</span> <span class="nav-text">配置gradle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置AndroidManifest-xml"><span class="nav-number">2.2.</span> <span class="nav-text">配置AndroidManifest.xml</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始自动打包"><span class="nav-number">3.</span> <span class="nav-text">开始自动打包</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#玩转Camera"><span class="nav-number">2.</span> <span class="nav-text">玩转Camera</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中的三维坐标轴"><span class="nav-number">2.1.</span> <span class="nav-text">Android中的三维坐标轴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera的变换操作"><span class="nav-number">2.2.</span> <span class="nav-text">Camera的变换操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera的使用实例"><span class="nav-number">2.3.</span> <span class="nav-text">Camera的使用实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#演示Demo1"><span class="nav-number">2.3.1.</span> <span class="nav-text">演示Demo1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D-ViewGroup演示"><span class="nav-number">2.3.2.</span> <span class="nav-text">3D ViewGroup演示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Camera用于自定义动画"><span class="nav-number">2.3.3.</span> <span class="nav-text">Camera用于自定义动画</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
